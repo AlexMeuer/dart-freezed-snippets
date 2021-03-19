@@ -1,0 +1,120 @@
+{
+	"Part statement": {
+		"prefix": "pts",
+		"body": [
+			"part '${TM_FILENAME_BASE}.g.dart';",
+		],
+		"description": "Creates a filled-in part statement"
+	},
+	"Part 'Freezed' statement": {
+		"prefix": "ptf",
+		"body": [
+			"part '${TM_FILENAME_BASE}.freezed.dart';",
+		],
+		"description": "Creates a filled-in freezed part statement"
+	},
+	"Freezed Data Class": {
+		"prefix": "fdataclass",
+		"body": [
+			"@freezed",
+			"@immutable",
+			"class ${1:DataClass} with _$${1:DataClass}{",
+			"  const factory ${1:DataClass}(${2}) = _${1:DataClass};",
+			"}"
+		],
+		"description": "Freezed Data Class"
+	},
+	"Freezed Union": {
+		"prefix": "funion",
+		"body": [
+			"@freezed",
+			"@immutable",
+			"class ${1:Union} with _$${1:Union}{",
+			"  const factory ${1:Union}.${2}(${4}) = _${2/(\\w)(.*)/${1:/upcase}$2/};",
+			"  $0",
+			"}"
+		],
+		"description": "Freezed Union"
+	},
+	"Freezed Union Case": {
+		"prefix": "funioncase",
+		"body": [
+			"const factory ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g}.${1}(${2}) = _${1/(\\w)(.*)/${1:/upcase}$2/};",
+			"$0"
+		],
+		"description": "Freezed Union Case"
+	},
+	"Value Object": {
+		"prefix": "vobj",
+		"body": [
+			"class ${1:ClassName} extends ValueObject<${2}>{",
+			"  @override",
+			"  final Either<ValueFailure<${2}>, ${2}> value;",
+			"",
+			"  factory ${1:ClassName}(${2} input) {",
+			"    return ${1:ClassName}._(",
+			"      ${4:// * TODO: insert validation}",
+			"    );",
+			"  }",
+			"",
+			"  const ${1:ClassName}._(this.value);",
+			"}"
+		]
+	},
+	"Value Failure": {
+		"prefix": "vfail",
+		"body": [
+			"const factory ValueFailure.${1}({@required T failedValue}) = ${1/(\\w)(.*)/${1:/upcase}$2/}<T>;",
+			"$0"
+		]
+	},
+	"Freezed Import": {
+		"prefix": "fimp",
+		"body": [
+			"import 'package:freezed_annotation/freezed_annotation.dart';",
+			"$0"
+		]
+	},
+	"Assert Not Null": {
+		"prefix": "ann",
+		"body": [
+			"assert(${1} != null)$0"
+		]
+	},
+	"IRepository": {
+		"prefix": "irepo",
+		"body": [
+			"import 'package:built_collection/built_collection.dart';",
+			"import 'package:dartz/dartz.dart';",
+			"",
+			"abstract class I${1:Model}Repository {",
+			"  Stream<Either<${1}Failure, BuiltList<${1}>>> watchAll();",
+			"  Future<Either<${1}Failure, Unit>> create(${1} ${1/(\\w)(.*)/${1:/downcase}$2/});",
+			"  Future<Either<${1}Failure, Unit>> update(${1} ${1/(\\w)(.*)/${1:/downcase}$2/});",
+			"  Future<Either<${1}Failure, Unit>> delete(${1} ${1/(\\w)(.*)/${1:/downcase}$2/});",
+			"}"
+		]
+	},
+	"Bloc Event Handler": {
+		"prefix": "evha",
+		"body": "(e) async* {$0}"
+	},
+	"FromJson Factory Ctor": {
+		"prefix": "fromjson",
+		"body": "factory ${1:Type}.fromJson(Map<String, dynamic> json) => _$${1}FromJson(json);"
+	},
+	"JsonKey Annotation": {
+		"prefix": "jkey",
+		"body": "@JsonKey(name: '$1')$0"
+	},
+	"Injectable Module": {
+		"prefix": "dimod",
+		"body": [
+			"import 'package:injectable/injectable.dart';",
+			"",
+			"  $0",
+			"",
+			"}",
+		]
+	}
+}
