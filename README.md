@@ -1,6 +1,4 @@
-# dart-freezed-snippets README
-
-Handy snippets for working with the `freezed` library.
+# ❄️ Handy snippets for working with the [`freezed`](https://github.com/rrousselGit/freezed) library.
 
 By far the most useful are `fdataclass` and `funioncase`.
 
